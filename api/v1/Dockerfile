@@ -17,4 +17,5 @@ EXPOSE 6000
 ENV FLASK_APP=app.py
 
 # Run app.py when the container launches # this is the command you use to run your projectt
-CMD ["python", "app.py", "--port", "6000"] 
+#CMD ["python", "-m", "app", "--port", "6000"] 
+CMD ["flask", "run", "--host", "0.0.0.0", "--port", "6000"]
