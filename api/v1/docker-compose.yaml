@@ -1,13 +1,8 @@
 services:
-  taking_notes:
-    build: .
-    ports:
-      - "6000:6000"
-    depends_on:
-      - mysql
 
   mysql:
     image: mysql:latest
+    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root_password
       MYSQL_DATABASE: flask_db
@@ -15,6 +10,21 @@ services:
       MYSQL_PASSWORD: flask_password
     ports:
       - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  talking_notes:
+    build: .
+    restart: always
+    depends_on:
+      - mysql
+    ports:
+      - "6000:6000"
+    environment:
+      FLASK_ENV: development
+      SQLALCHEMY_DATABASE_URI: mysql+pymysql://flask_user:flask_password@mysql/flask_db
+    command: ["/wait-for-it.sh", "mysql", "--", "python", "app.py"]
+
 
   adminer:
     image: adminer:latest
@@ -30,4 +40,7 @@ services:
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
     depends_on:
-      - taking_notes
+      - talking_notes
+
+volumes:
+  mysql_data:
