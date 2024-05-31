@@ -1,8 +1,11 @@
 from flask import Flask, make_response, jsonify, request, abort
 from flask_sqlalchemy import SQLAlchemy
 import logging
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)  # Enable CORS for all routes
+
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql:\
 //flask_user:flask_password@mysql/flask_db'
 logging.basicConfig()
@@ -68,15 +71,13 @@ def get_all_notes():
     all_notes = Notes.query.all()
     lis = []
     for note in all_notes:
-        list_notes = [
-            {
+        list_notes = {
                 'notes_id': note.notes_id,
                 'title': note.title,
                 'content': note.content,
                 'created_at': note.created_at,
                 'updated_at': note.updated_at
             }
-        ]
         lis.append(list_notes)
     return jsonify(lis), 200
 
