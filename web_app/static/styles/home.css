@@ -45,6 +45,11 @@ body {
 	border-radius: 5px;
 	margin-right: 10px;
 }
+.send-btn{
+	border-radius: 30px;
+    width: 65px;
+    height: 30px;
+}
 .add-note-btn {
 	position: absolute;
 	bottom: 20px;
