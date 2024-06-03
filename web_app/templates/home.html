@@ -5,24 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../static/styles/header.css" />
     <link rel="stylesheet" href="../static/styles/home.css" />
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="../static/js/create.js"></script>
-    <title>TakingNote</title>
+    <title>TalkingNote</title>
   </head>
   <body>
     <div class="container">
       <div class="notes-section">
-        <header><dev class="hNote">TakingNote</dev></header>
+        <header><dev class="hNote">TalkingNote</dev></header>
         <div id="notes-container"></div>
         <button class="add-note-btn">+</button>
       </div>
       <div class="chat-section">
-        <div class="chat-messages">
-          <div class="chat-message"><strong>You:</strong> Hello</div>
-          <div class="chat-message"><strong>AI:</strong> Hi there!</div>
-          <div class="chat-message"><strong>You:</strong> How are you?</div>
-        </div>
+        <div class="chat-messages"></div>
         <div class="chat-box">
           <input type="text" class="chat-input" placeholder="Ask AI" />
+		  <button class="send-btn">send</button>
         </div>
       </div>
     </div>
