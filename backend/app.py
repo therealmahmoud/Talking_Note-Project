@@ -2,7 +2,11 @@ from flask import Flask, make_response, jsonify, request, abort
 from flask_sqlalchemy import SQLAlchemy
 import logging
 from flask_cors import CORS
+import google.generativeai as genai
 
+
+genai.configure(api_key='AIzaSyD7hA0sliTWVyLE2yGeLRkT-9LCAfUEQxk')
+model = genai.GenerativeModel('gemini-1.0-pro')
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
 
@@ -124,7 +128,6 @@ def add_note():
     new_note = Notes(title=title, content=content)
     db.session.add(new_note)
     db.session.commit()
-
     return jsonify({'message': 'Note added successfully!'}), 201
 
 
@@ -171,6 +174,14 @@ def update_note(id):
         db.session.commit()
         return jsonify({'message': 'Note updated successfully!'}), 200
     return abort(404)
+
+
+@app.route('/notes/ai', methods=['POST'], strict_slashes=False)
+def ai_chat():
+    data = request.get_json()
+    prompt = data.get('prompt')
+    response = model.generate_content(prompt)
+    return jsonify({'AI': response.text}), 201
 
 
 if __name__ == "__main__":
