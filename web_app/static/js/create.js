@@ -1,54 +1,44 @@
-// Define modal globally so it's accessible in other functions
 let modal;
-// Call fetchNotes on page load
-document.addEventListener("DOMContentLoaded", function () {
-  // Get modal element
-  modal = document.getElementById("noteModal");
-  // Get open modal button
-  var btn = document.querySelector(".add-note-btn");
-  // Get close button
-  var closeBtn = document.querySelector(".close-btn");
 
-  // Listen for open click
-  btn.addEventListener("click", openModal);
-  // Listen for close click
-  closeBtn.addEventListener("click", closeModal);
-  // Listen for outside click
-  window.addEventListener("click", outsideClick);
-  // Listen for form submit
-  document.getElementById("noteForm").addEventListener("submit", addNote);
+$(document).ready(function () {
+  modal = $("#noteModal");
+  var btn = $(".add-note-btn");
+  var closeBtn = $(".close-btn");
+  var sendBtn = $(".send-btn");
+
+  sendBtn.on("click", ai_chat);
+  btn.on("click", openModal);
+  closeBtn.on("click", closeModal);
+  $(window).on("click", outsideClick);
+  $("#noteForm").on("submit", addNote);
+
+
+  fetchNotes();
 });
 
-// Call fetchNotes on page load
-document.addEventListener("DOMContentLoaded", fetchNotes);
-
-// Function to fetch and display notes from the API
 async function fetchNotes() {
   try {
     const response = await fetch("http://localhost:3000/notes");
     const notes = await response.json();
-    const notesContainer = document.getElementById("notes-container");
-    notesContainer.innerHTML = ""; // Clear existing notes
+    const notesContainer = $("#notes-container");
+    notesContainer.empty(); // Clear existing notes
 
     notes.forEach((note) => {
-      const noteElement = document.createElement("div");
-      noteElement.className = "note";
-      noteElement.innerHTML = `
-	  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-		<div class="note-title">${note.title}</div>
-		<div class="note-content">${note.content}</div>
-		<div class="note-actions">
-		  <span class="delete-note"><i class="fa fa-trash-o" style="font-size:30px" data-id="${note.notes_id}"></i></span>
-		</div>
-	  `;
-      notesContainer.appendChild(noteElement);
+      const noteElement = $(`
+        <div class="note">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+          <div class="note-title">${note.title}</div>
+          <div class="note-content">${note.content}</div>
+          <div class="note-actions">
+            <span class="delete-note"><i class="fa fa-trash-o" style="font-size:30px" data-id="${note.notes_id}"></i></span>
+          </div>
+        </div>
+      `);
+      notesContainer.append(noteElement);
     });
 
     // Add event listeners to the delete icons
-    const deleteIcons = document.querySelectorAll(".delete-note");
-    deleteIcons.forEach((icon) => {
-      icon.addEventListener("click", deleteNote);
-    });
+    $(".delete-note i").on("click", deleteNote);
   } catch (error) {
     console.error("Error fetching notes:", error);
   }
@@ -56,26 +46,26 @@ async function fetchNotes() {
 
 // Function to open modal
 function openModal() {
-  modal.style.display = "block";
+  modal.show();
 }
 
 // Function to close modal
 function closeModal() {
-  modal.style.display = "none";
+  modal.hide();
 }
 
 // Function to close modal if outside click
 function outsideClick(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
+  if ($(event.target).is(modal)) {
+    modal.hide();
   }
 }
 
 // Function to add a new note
 async function addNote(event) {
   event.preventDefault();
-  const noteTitle = document.getElementById("noteTitle").value;
-  const noteContent = document.getElementById("noteContent").value;
+  const noteTitle = $("#noteTitle").val();
+  const noteContent = $("#noteContent").val();
 
   try {
     const response = await fetch("http://localhost:3000/notes", {
@@ -100,9 +90,39 @@ async function addNote(event) {
   }
 }
 
+async function ai_chat(event) {
+  event.preventDefault();
+  const prompt = $(".chat-input").val();
+  const chatContainer = $(".chat-section");
+  try {
+    const response = await fetch("http://localhost:3000/notes/ai", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            prompt: prompt,
+        }),
+    });
+    if (response.ok) {
+      const data = await response.json(); // Parse the JSON response
+      const chatElement = $(`
+          <div class="chat-message">
+              <div class="message"><h5>AI:</h5> ${data.AI}</div>
+          </div>
+      `);
+    chatContainer.append(chatElement);
+    } else {
+      console.error("Error fetching from AI");
+    }
+  } catch (error) {
+    console.error("Error getting response", error);
+  }  
+}
+
 // Function to delete a note
 async function deleteNote(event) {
-  const noteId = event.target.getAttribute("data-id");
+  const noteId = $(event.target).data("id");
 
   try {
     const response = await fetch(`http://localhost:3000/notes/${noteId}`, {
