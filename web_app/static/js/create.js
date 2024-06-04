@@ -105,8 +105,11 @@ async function ai_chat(event) {
         }),
     });
     if (response.ok) {
-      const data = await response.json(); // Parse the JSON response
+      const data = await response.json();
       const chatElement = $(`
+          <div class="chat-message">
+              <div class="message"><h5>You:</h5> ${prompt}</div>
+          </div>
           <div class="chat-message">
               <div class="message"><h5>AI:</h5> ${data.AI}</div>
           </div>
