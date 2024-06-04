@@ -7,8 +7,10 @@ import google.generativeai as genai
 
 genai.configure(api_key='AIzaSyD7hA0sliTWVyLE2yGeLRkT-9LCAfUEQxk')
 model = genai.GenerativeModel('gemini-1.0-pro')
+""" chat = model.start_chat(history=[]) """
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
+
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql:\
 //flask_user:flask_password@mysql/flask_db'
@@ -175,14 +177,26 @@ def update_note(id):
         return jsonify({'message': 'Note updated successfully!'}), 200
     return abort(404)
 
+""" def ai_intialize():
+    all_notes = Notes.query.all()
+    print(all_notes.count())notes.count())notes.count())notes)
+    chat.send_message("i have some notes")
+    for note in all_notes:
+        list_notes = [note.title, note.content]
+        chat.send_message(list_notes)
 
+ai_intialize() """
 @app.route('/notes/ai', methods=['POST'], strict_slashes=False)
 def ai_chat():
     data = request.get_json()
     prompt = data.get('prompt')
     response = model.generate_content(prompt)
+    """ answer = response.text.replace('**', '\n') """
+    """ finanswer = answer.replace('*', '\n') """
     return jsonify({'AI': response.text}), 201
+
 
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=6000, threaded=True)
+

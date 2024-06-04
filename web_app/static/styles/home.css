@@ -22,13 +22,20 @@ body {
 	width: 30%;
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
+	overflow-y: auto;
+/* 	justify-content: space-between; */
 }
-.note, .chat-message {
+.note{
 	border: 1px solid #ccc;
 	margin-bottom: 10px;
 	padding: 10px;
 	border-radius: 5px;
+}
+.chat-message {
+	border: 1px solid #ccc;
+	margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
 }
 .note-title {
 	font-weight: bold;
@@ -40,15 +47,27 @@ body {
 }
 .chat-input {
 	flex: 1;
-	padding: 10px;
-	border: 1px solid #ccc;
-	border-radius: 5px;
-	margin-right: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    bottom: 15px;
+    width: 22%;
 }
 .send-btn{
 	border-radius: 30px;
     width: 65px;
     height: 30px;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    bottom: 19px;
+    right: 5px;
+    justify-content: center;
+    align-items: center;
 }
 .add-note-btn {
 	position: absolute;
