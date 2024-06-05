@@ -25,7 +25,42 @@ body {
 	overflow-y: auto;
 	margin-bottom: 20px;
 }
-.header{
-    margin-bottom: 85%;
-    border-bottom: 1px solid #ccc;
+header {
+    margin-bottom: 80px;
+    background-color: white;
+    height: 50px;
+    border-bottom: solid 1px #ccc;
+    display: flex;
+}
+.hNote {
+    justify-content: center;
+    margin-left: 40%;
+    font-weight: bold;
+    font-size: x-large;
+}
+.ai-pow {
+    font-size: x-large;
+    font-weight: bold;
+    text-align: center;
+}
+.desc {
+    width: 90%;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-top: 10%;
+}
+.welcome {
+    font-weight: bold;
+    font-size: larger;
+}
+.after-welcome {
+    width: 50%;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
