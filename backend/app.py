@@ -77,7 +77,8 @@ def get_all_notes():
     """
     all_notes = Notes.query.all()
     lis = []
-    chat.send_message("i will send some notes for you kindly keep it till i need it")
+    mynotes = "notes: "
+    i = 1
     for note in all_notes:
         list_notes = {
                 'notes_id': note.notes_id,
@@ -86,8 +87,10 @@ def get_all_notes():
                 'created_at': note.created_at,
                 'updated_at': note.updated_at
             }
-        chat.send_message(note.title + ': ' + note.content)
+        mynotes += str(i) + "- " + note.title + ': ' + note.content
         lis.append(list_notes)
+        i = i + 1
+    chat.send_message("i will send some notes to use it in future questions\n" + mynotes)
     return jsonify(lis), 200
 
 
