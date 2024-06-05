@@ -3,11 +3,12 @@ from flask_sqlalchemy import SQLAlchemy
 import logging
 from flask_cors import CORS
 import google.generativeai as genai
+from markdown import markdown
 
 
 genai.configure(api_key='AIzaSyD7hA0sliTWVyLE2yGeLRkT-9LCAfUEQxk')
-model = genai.GenerativeModel('gemini-1.0-pro')
-""" chat = model.start_chat(history=[]) """
+model = genai.GenerativeModel('gemini-1.5-flash')
+chat = model.start_chat(history=[])
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
 
@@ -76,6 +77,7 @@ def get_all_notes():
     """
     all_notes = Notes.query.all()
     lis = []
+    chat.send_message("i will send some notes for you kindly keep it till i need it")
     for note in all_notes:
         list_notes = {
                 'notes_id': note.notes_id,
@@ -84,6 +86,7 @@ def get_all_notes():
                 'created_at': note.created_at,
                 'updated_at': note.updated_at
             }
+        chat.send_message(note.title + ': ' + note.content)
         lis.append(list_notes)
     return jsonify(lis), 200
 
@@ -177,24 +180,20 @@ def update_note(id):
         return jsonify({'message': 'Note updated successfully!'}), 200
     return abort(404)
 
-""" def ai_intialize():
-    all_notes = Notes.query.all()
-    print(all_notes.count())notes.count())notes.count())notes)
-    chat.send_message("i have some notes")
-    for note in all_notes:
-        list_notes = [note.title, note.content]
-        chat.send_message(list_notes)
 
-ai_intialize() """
 @app.route('/notes/ai', methods=['POST'], strict_slashes=False)
 def ai_chat():
+    """
+    Perform a chat with the AI model using the provided prompt.
+
+    Returns:
+    flask.Response: A JSON response containing the AI's response to the provided prompt
+    with an HTTP status code 201 if the chat is successful.
+    """
     data = request.get_json()
     prompt = data.get('prompt')
-    response = model.generate_content(prompt)
-    """ answer = response.text.replace('**', '\n') """
-    """ finanswer = answer.replace('*', '\n') """
-    return jsonify({'AI': response.text}), 201
-
+    response = chat.send_message(prompt)
+    return jsonify({'AI': markdown(response.text)}), 201
 
 
 if __name__ == "__main__":
