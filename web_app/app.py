@@ -18,6 +18,8 @@ def hello():
 @app.route('/test')
 def test():
     return "Hello, from test!"
+
+
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port='6000')
 # Custom 404 error handler
