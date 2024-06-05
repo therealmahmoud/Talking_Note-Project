@@ -23,7 +23,7 @@ body {
 	display: flex;
 	flex-direction: column;
 	overflow-y: auto;
-/* 	justify-content: space-between; */
+	margin-bottom: 20px;
 }
 .note{
 	border: 1px solid #ccc;
@@ -57,6 +57,9 @@ body {
     bottom: 15px;
     width: 22%;
 }
+.delete-note{
+	cursor: pointer;
+}
 .send-btn{
 	border-radius: 30px;
     width: 65px;
@@ -65,7 +68,7 @@ body {
     flex-direction: column;
     position: fixed;
     bottom: 19px;
-    right: 5px;
+    right: 20px;
     justify-content: center;
     align-items: center;
 }

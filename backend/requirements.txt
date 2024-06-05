@@ -5,4 +5,5 @@ cryptography
 flask-cors
 gunicorn==20.1.0
 google-generativeai
+markdown
 
