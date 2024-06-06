@@ -32,6 +32,43 @@ header {
     border-bottom: solid 1px #ccc;
     display: flex;
 }
+.about-btn {
+	border-radius: 30px;
+    width: 65px;
+    height: 30px;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 19px;
+    right: 35%;
+    justify-content: center;
+    align-items: center;
+}
+.feature-btn{
+	border-radius: 30px;
+    width: 65px;
+    height: 30px;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 19px;
+    right: 39%;
+    justify-content: center;
+    align-items: center;
+}
+.start-btn{
+	border-radius: 30px;
+    width: 200px;
+    height: 75px;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+	font-size: x-large;
+    left: 6%;
+    bottom: 50%;
+    justify-content: center;
+    align-items: center;
+}
 .hNote {
     justify-content: center;
     margin-left: 40%;
@@ -42,6 +79,7 @@ header {
     font-size: x-large;
     font-weight: bold;
     text-align: center;
+    margin-top: 15px;
 }
 .desc {
     width: 90%;
@@ -50,11 +88,12 @@ header {
     border: 1px solid #ddd;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
-    margin-top: 10%;
+    margin-top: 5%;
 }
 .welcome {
     font-weight: bold;
     font-size: larger;
+	margin: 10px;
 }
 .after-welcome {
     width: 50%;
@@ -63,16 +102,15 @@ header {
     border: 1px solid #ddd;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
+	margin: 10px;
 }
 
 .image-container {
-    width: 70%;
+    width: 80%;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
     background-color: #ffffff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    left: 40%;
 }
 
 .custom-image {
