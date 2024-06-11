@@ -6,19 +6,19 @@ import google.generativeai as genai
 from markdown import markdown
 
 
-genai.configure(api_key='AIzaSyD7hA0sliTWVyLE2yGeLRkT-9LCAfUEQxk')
-model = genai.GenerativeModel('gemini-1.5-flash')
-chat = model.start_chat(history=[])
-app = Flask(__name__)
+genai.configure(api_key='AIzaSyD7hA0sliTWVyLE2yGeLRkT-9LCAfUEQxk')  # api key for AI model
+model = genai.GenerativeModel('gemini-1.5-flash') # assign default model
+chat = model.start_chat(history=[]) # create chat history
+app = Flask(__name__) # Flask
 CORS(app)  # Enable CORS for all routes
 
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql:\
 //flask_user:flask_password@mysql/flask_db'
-logging.basicConfig()
-logging.getLogger('sqlalchemy.engine').setLevel(logging.INFO)
+logging.basicConfig() # logging
+logging.getLogger('sqlalchemy.engine').setLevel(logging.INFO) # logging
 
-db = SQLAlchemy(app)
+db = SQLAlchemy(app) # SQLAlchemy assignment to db variable
 
 
 @app.errorhandler(404)
@@ -56,13 +56,7 @@ class Notes(db.Model):
                            onupdate=db.func.current_timestamp())
 
 with app.app_context():
-    db.create_all()
-
-
-@app.route('/test', methods=['GET'], strict_slashes=False)
-def test():
-    """ Just test. """
-    return "hello from API", 200
+    db.create_all() # creates the query objects before starting API's
 
 
 @app.route('/notes', methods=['GET'], strict_slashes=False)
