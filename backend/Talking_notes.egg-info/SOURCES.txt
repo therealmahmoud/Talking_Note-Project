@@ -1,5 +1,0 @@
-setup.py
-Talking_notes.egg-info/PKG-INFO
-Talking_notes.egg-info/SOURCES.txt
-Talking_notes.egg-info/dependency_links.txt
-Talking_notes.egg-info/top_level.txt
