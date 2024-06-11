@@ -1,0 +1,123 @@
+body {
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+	height: 100vh;
+	overflow: hidden;
+}
+.container {
+	display: flex;
+	width: 100%;
+	height: 100%;
+}
+.notes-section, .chat-section {
+	padding: 10px;
+}
+.notes-section {
+	width: 70%;
+	border-right: 1px solid #ccc;
+	overflow-y: auto;
+}
+.chat-section {
+	width: 30%;
+	display: flex;
+	flex-direction: column;
+	overflow-y: auto;
+	margin-bottom: 20px;
+}
+header {
+    margin-bottom: 80px;
+    background-color: white;
+    height: 50px;
+    border-bottom: solid 1px #ccc;
+    display: flex;
+}
+.about-btn {
+	border-radius: 30px;
+    width: 65px;
+    height: 30px;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 19px;
+    right: 35%;
+    justify-content: center;
+    align-items: center;
+}
+.feature-btn{
+	border-radius: 30px;
+    width: 65px;
+    height: 30px;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 19px;
+    right: 39%;
+    justify-content: center;
+    align-items: center;
+}
+.start-btn{
+	border-radius: 30px;
+    width: 200px;
+    height: 75px;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+	font-size: x-large;
+    left: 6%;
+    bottom: 50%;
+    justify-content: center;
+    align-items: center;
+}
+.hNote {
+    justify-content: center;
+    margin-left: 40%;
+    font-weight: bold;
+    font-size: x-large;
+}
+.ai-pow {
+    font-size: x-large;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 15px;
+}
+.desc {
+    width: 90%;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-top: 5%;
+}
+.welcome {
+    font-weight: bold;
+    font-size: larger;
+	margin: 10px;
+}
+.after-welcome {
+    width: 50%;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+	margin: 10px;
+}
+
+.image-container {
+    width: 80%;
+    display: flex;
+    background-color: #ffffff;
+    position: relative;
+    left: 40%;
+}
+
+.custom-image {
+    width: 70%; /* Controls the width of the image */
+    max-width: 70%; /* Ensures image does not exceed container width */
+    height: auto; /* Maintains aspect ratio */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds shadow */
+    object-fit: cover; /* Ensures the image covers the container area */
+}
