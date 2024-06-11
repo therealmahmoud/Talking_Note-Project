@@ -1,0 +1,108 @@
+body {
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+	height: 100vh;
+	overflow: hidden;
+}
+.container {
+	display: flex;
+	width: 100%;
+	height: 100%;
+}
+.notes-section{
+	padding: 10px;
+}
+.notes-section {
+	width: 100%;
+	overflow-y: auto;
+}
+
+header {
+    position: sticky;
+    top: 83px;
+    background-color: white;
+    height: 71px;
+    border-bottom: solid 1px #ccc;
+}
+
+.hNote {
+    display: flex;
+    position: fixed;
+    top: 5%;
+    justify-content: space-between;
+    margin-left: 40%;
+    font-weight: bold;
+    font-size: xxx-large;
+}
+.profile-pic {
+    width: 200px;
+    position: fixed;
+    height: 200px;
+    right: 70%;
+    bottom: 56%;
+    border-radius: 48%;
+    overflow: hidden;
+}
+
+.profile-pic img {
+    width: 100%; 
+    height: auto;
+}
+.profile-pic2 {
+    width: 200px;
+    position: fixed;
+    height: 200px;
+    right: 25%;
+    bottom: 56%;
+    border-radius: 48%;
+    overflow: hidden;
+}
+
+.profile-pic2 img {
+    width: 100%; 
+    height: auto;
+}
+.mostafa{
+	position: fixed;
+    height: 200px;
+    right: 21%;
+    bottom: 37%;
+}
+.mahmoud{
+	position: fixed;
+    height: 200px;
+    right: 67%;
+    bottom: 37%;
+}
+.mostafa-links{
+	position: fixed;
+    height: 200px;
+    right: 26%;
+    bottom: 32%;
+}
+.mahmoud-links{
+	position: fixed;
+    height: 200px;
+    right: 73%;
+    bottom: 32%;
+}
+.description{
+	position: fixed;
+    height: 200px;
+    right: 46%;
+    bottom: 28%;
+}
+.paragraph{
+    display: block;
+    width: 40%;
+    position: fixed;
+    right: 32%;
+    bottom: 15%;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-top: 5%;
+}
