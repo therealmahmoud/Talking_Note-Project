@@ -9,8 +9,6 @@ WORKDIR /app
 
 COPY requirements.txt /app/requirements.txt
 
-# Copy the current directory contents into the container at /app
-#COPY . /app
 # Install any needed dependencies specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
@@ -25,5 +23,4 @@ EXPOSE 6000
 ENV FLASK_APP=app.py
 
 # Run app.py when the container launches # this is the command you use to run your projectt
-#CMD ["/wait-for-it.sh", "mysql", "--", "python", "app.py"]
 CMD ["/wait-for-it.sh", "mysql", "--", "gunicorn", "-b", "0.0.0.0:6000", "app:app"]
